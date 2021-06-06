@@ -40,6 +40,10 @@
       *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo &&
       novoUsuarioForm.get('userName')?.touched">
     </app-mensagem>
+    <app-mensagem mensagem="Usuário já existe"
+      *ngIf="novoUsuarioForm.get('userName')?.errors?.usuarioExistente &&
+      novoUsuarioForm.get('userName')?.touched">
+    </app-mensagem>
   </div>
 
   <div class="form-group" >
