@@ -8,6 +8,14 @@
       placeholder="email"
       class="form-control"
     />
+    <app-mensagem mensagem="Email Obrigatório"
+      *ngIf="novoUsuarioForm.get('email')?.errors?.required &&
+      novoUsuarioForm.get('email')?.touched">
+    </app-mensagem>
+    <app-mensagem mensagem="Email inválido"
+      *ngIf="novoUsuarioForm.get('email')?.errors?.email &&
+      novoUsuarioForm.get('email')?.touched">
+    </app-mensagem>
   </div>
 
   <div class="form-group">
@@ -16,6 +24,10 @@
       placeholder="Nome Completo"
       class="form-control"
     />
+    <app-mensagem mensagem="Nome inválido"
+      *ngIf="novoUsuarioForm.get('fullName')?.errors &&
+      novoUsuarioForm.get('fullName')?.touched">
+    </app-mensagem>
   </div>
 
   <div class="form-group">
@@ -24,6 +36,10 @@
       placeholder="Usuário"
       class="form-control"
     />
+    <app-mensagem mensagem="Nome inválido"
+      *ngIf="novoUsuarioForm.get('userName')?.errors &&
+      novoUsuarioForm.get('userName')?.touched">
+    </app-mensagem>
   </div>
 
   <div class="form-group" >
@@ -33,6 +49,10 @@
       type="password"
       class="form-control"
     />
+    <app-mensagem mensagem="Nome inválido"
+      *ngIf="novoUsuarioForm.get('password')?.errors &&
+      novoUsuarioForm.get('password')?.touched">
+    </app-mensagem>
   </div>
 
   <button class="btn btn-primary btn-block">
