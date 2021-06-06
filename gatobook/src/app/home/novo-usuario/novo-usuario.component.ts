@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NovoUsuario } from './novo-usuario';
 import { minusculoValidator } from './minusculo.validator';
 import { usuarioSenhaIguaisValidator } from './usuario-senha-iguais.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -18,15 +19,16 @@ export class NovoUsuarioComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private novoUsuarioService: NovoUsuarioService,
-    private usuarioExisteService :UsuarioExisteService
+    private usuarioExisteService :UsuarioExisteService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.novoUsuarioForm = this.formBuilder.group(
       {
         email:['',
-          Validators.required,
-          Validators.email,
+          [Validators.required,
+          Validators.email]
       ],
         fullName:['',
         [Validators.required,
@@ -36,21 +38,24 @@ export class NovoUsuarioComponent implements OnInit {
         [minusculoValidator],
         [this.usuarioExisteService.usuarioJaExiste()]
       ],
-        password:['',
-        Validators.minLength(3)
-      ],
+        password:[''],
       },
       {
-        Validators: [usuarioSenhaIguaisValidator]
+        validators: [usuarioSenhaIguaisValidator]
       }
     )
   }
 
   cadastrar(){
-    const novoUsuario = this.novoUsuarioForm.getRawValue()
-    this.novoUsuarioService.cadastroNovoUsuario(novoUsuario).subscribe(
-      (res) => console.log(JSON.stringify(res))
-    )
+    if(this.novoUsuarioForm.valid){
+      const novoUsuario = this.novoUsuarioForm.getRawValue()
+      this.novoUsuarioService.cadastroNovoUsuario(novoUsuario).subscribe(
+        () => this.router.navigate(['']),
+        (err) => console.log(err)
+      )
+    }else{
+      alert("formulario inválido")
+    }
   }
 
 }
