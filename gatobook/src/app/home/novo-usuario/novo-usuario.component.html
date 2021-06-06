@@ -36,8 +36,8 @@
       placeholder="Usuário"
       class="form-control"
     />
-    <app-mensagem mensagem="Nome inválido"
-      *ngIf="novoUsuarioForm.get('userName')?.errors &&
+    <app-mensagem mensagem="Usuário deve ser em letra minúscula"
+      *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo &&
       novoUsuarioForm.get('userName')?.touched">
     </app-mensagem>
   </div>
