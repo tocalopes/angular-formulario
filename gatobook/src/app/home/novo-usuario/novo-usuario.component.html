@@ -46,16 +46,17 @@
     </app-mensagem>
   </div>
 
-  <div class="form-group" >
+  <div class="form-group">
     <input
-      formControlName="password"
-      placeholder="Senha"
       type="password"
+      placeholder="Senha"
       class="form-control"
+      formControlName="password"
     />
-    <app-mensagem mensagem="Nome inválido"
-      *ngIf="novoUsuarioForm.get('password')?.errors &&
-      novoUsuarioForm.get('password')?.touched">
+    <app-mensagem
+      *ngIf="novoUsuarioForm.errors?.senhaIgualUsuario"
+      mensagem="Senha deve ser diferente do usuário"
+    >
     </app-mensagem>
   </div>
 

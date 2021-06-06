@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NovoUsuario } from './novo-usuario';
 import { minusculoValidator } from './minusculo.validator';
+import { usuarioSenhaIguaisValidator } from './usuario-senha-iguais.validator';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -37,7 +38,10 @@ export class NovoUsuarioComponent implements OnInit {
       ],
         password:['',
         Validators.minLength(3)
-      ]
+      ],
+      },
+      {
+        Validators: [usuarioSenhaIguaisValidator]
       }
     )
   }
