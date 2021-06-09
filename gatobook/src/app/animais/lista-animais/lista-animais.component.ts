@@ -1,7 +1,9 @@
+import { switchMap } from 'rxjs/operators';
 import { AnimaisService } from './../animais.service';
 import { Component, OnInit } from '@angular/core';
 import { Animais } from '../animal';
 import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista-animais',
@@ -10,21 +12,17 @@ import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
 })
 export class ListaAnimaisComponent implements OnInit {
 
-  animais!: Animais;
+  animais$ !: Observable<Animais>;
 
   constructor(private usuarioService:UsuarioService,
     private animaisService: AnimaisService) { }
 
   ngOnInit(): void {
-    this.usuarioService.retornaUsuario().subscribe(
-      usuario => {
+    this.animais$ = this.usuarioService.retornaUsuario().pipe(
+      switchMap((usuario) => {
         const userName = usuario.name ?? '';
-        this.animaisService.listaDoUsuario(userName).subscribe(
-          animais => {
-            this.animais = animais;
-          }
-        )
-      }
+        return this.animaisService.listaDoUsuario(userName);
+      })
     )
   }
 
