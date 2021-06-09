@@ -37,8 +37,9 @@ export class UsuarioService {
     this.usuarioSubject.next({})
   }
 
-  estaLogado(){
-    this.tokenService.possuiToken()
+  estaLogado(): boolean{
+    let possuiToken = this.tokenService.possuiToken();
+    return possuiToken;
   }
 
 }

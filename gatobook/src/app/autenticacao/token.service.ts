@@ -21,7 +21,11 @@ export class TokenService {
   }
 
   possuiToken(){
-    return !!this.retornaToken()
+    if (this.retornaToken() == ''){
+      return false
+    }else{
+      return true
+    }
   }
 
 }
