@@ -1,3 +1,4 @@
+import { ListaAnimaisResolver } from './lista-animais/lista-animais.resolver';
 import { NovoAnimalComponent } from './novo-animal/novo-animal.component';
 import { ListaAnimaisComponent } from './lista-animais/lista-animais.component';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,10 @@ import { DetalheAnimalComponent } from './detalhe-animal/detalhe-animal.componen
 const routes: Routes = [
   {
     path: '',
-    component: ListaAnimaisComponent
+    component: ListaAnimaisComponent,
+    resolve: {
+      animais : ListaAnimaisResolver
+    }
   },
   {
     path: ':animalId',
