@@ -1,12 +1,14 @@
 <div [ngClass]="{'active-menu':mostraMenu}">
 <!-- ng class, mostra as classes de acordo com o parametro passado no objeto -->
   <div class="menu-bar">
-    <i class=" fa fa-window-close">
-      (click)="abreMenu()"
-      (keyup.space)="abreMenu()"
+    <i class=" fa fa-window-close"
+      (click)="toggleMenu()"
+      (keyup.space)="toggleMenu()">
     </i>
     <ng-content></ng-content>
   </div>
 
-  <div class="overlay" (click="abreMenu()")></div>
+  <div class="overlay" (click)="toggleMenu()">
+
+  </div>
 </div>

@@ -1,5 +1,5 @@
 import { UsuarioService } from './../../autenticacao/usuario/usuario.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cabecalho.component.scss']
 })
 export class CabecalhoComponent {
+
 
   user$ = this.usuarioService.retornaUsuario()
 
