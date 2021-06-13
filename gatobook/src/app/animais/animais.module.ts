@@ -1,3 +1,5 @@
+import { MensagemModule } from './../componentes/mensagem/mensagem.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CartaoModule } from './../componentes/cartao/cartao.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,7 +25,9 @@ import { NovoAnimalComponent } from './novo-animal/novo-animal.component';
   imports: [
     CommonModule,
     AnimaisRoutingModule,
-    CartaoModule
+    CartaoModule,
+    ReactiveFormsModule,
+    MensagemModule
   ]
 })
 export class AnimaisModule { }
