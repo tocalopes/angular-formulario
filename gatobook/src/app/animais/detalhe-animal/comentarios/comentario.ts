@@ -1,5 +1,5 @@
 export interface Comentario {
-  data: Date;
+  date: Date;
   text: string;
   userName: string;
 }
